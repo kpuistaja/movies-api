@@ -3,6 +3,9 @@ const port = 8080
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./docs/swagger.json');
 
+app.get('/movies', (reg, res) => {
+    res.send(["The Internship", "Hangover", "Titanic"])
+})
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.listen(port, () => { 
