@@ -35,6 +35,23 @@ paths:
                     description: Returns a list of movies
             summary: Get a list of all movies
             description: Returns a list of all movies in the API
+        post:
+            requestBody:
+                description: A new game to be created
+                content:
+                    error: {}
+                required: true
+            tags:
+                - new-movie
+            responses:
+                '201':
+                    content:
+                        new-movie: {}
+                    description: Create new movie
+                '400':
+                    description: One or all params are missing
+            summary: Creates a movie
+            description: Creates a new movie
     '/movies/{id}':
         get:
             tags:
@@ -66,6 +83,9 @@ paths:
                     description: Movie was not found in movies array
             summary: Get full details of movie
             description: Returns full details of given id movie
+        post:
+            tags: []
+            description: ''
 components:
     schemas:
         error:
@@ -77,3 +97,17 @@ components:
                     type: string
             example:
                 error: Error message.
+        new-movie:
+            title: Root Type for new-movie
+            description: ''
+            required:
+                - year
+            type: object
+            properties:
+                name:
+                    type: string
+                year:
+                    type: number
+            example:
+                name: Inception
+                year: 2017
