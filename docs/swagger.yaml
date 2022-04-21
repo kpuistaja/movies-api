@@ -86,6 +86,24 @@ paths:
         post:
             tags: []
             description: ''
+        delete:
+            requestBody:
+                content:
+                    delete-movie: {}
+            tags:
+                - delete-movie
+            responses:
+                '204': {}
+                '404':
+                    content:
+                        error:
+                            examples:
+                                Movie /w+ was not found:
+                                    value:
+                                        error: Movie \w+ was not found in game array
+                    description: Movie was not found in movies array
+            summary: Delete a movie
+            description: Deletes movie from the list
 components:
     schemas:
         error:
@@ -111,3 +129,15 @@ components:
             example:
                 name: Inception
                 year: 2017
+        delete-movie:
+            title: Root Type for delete-movie
+            description: ''
+            required:
+                - id
+            type: object
+            properties:
+                id:
+                    description: ''
+                    type: string
+            example:
+                id: 1
